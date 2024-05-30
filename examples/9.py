@@ -1,26 +1,34 @@
-import asyncio
-import time
+def print_number(n: int):
+    print(n)
+
+    def decorator(func):
+        print(100)
+
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+
+            print(result + 1)
+
+            return result
+
+        return wrapper
+
+    return decorator
 
 
-event = asyncio.Event()
+@print_number(10)
+def func1():
+    return 20
 
 
-def create() -> None:
-    asyncio.create_task(wait())
+@print_number(30)
+@print_number(40)
+def func2():
+    return 50
 
 
-async def wait() -> None:
-    await asyncio.sleep(1)
-    event.set()
+func1()
 
+f2 = func2()
 
-async def main() -> None:
-    create()
-    await event.wait()
-
-
-start = time.time()
-
-asyncio.run(main())
-
-print(time.time() - start)
+print(f2)

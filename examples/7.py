@@ -1,18 +1,34 @@
-import asyncio
-import time
+class P:
+    def __init__(self) -> None:
+        print(1)
 
 
-async def wait() -> None:
-    await asyncio.sleep(1)
-    print('done')
+class A(P):
+    def __init__(self, a: int) -> None:
+        super().__init__()
+        print(a)
+
+    def __new__(cls, *a, **k) -> "A":
+        print(1)
+        return super().__new__(cls)
+
+    def __call__(self) -> None:
+        print(1)
+
+    def __enter__(self) -> int:
+        print(1)
+        return 1
+
+    def __exit__(self, *a) -> None:
+        print(1)
 
 
-async def main() -> None:
-    asyncio.create_task(wait())
+print(1)
 
+a = A(1)
 
-start = time.time()
+with a as b:
+    print(b)
+    a()
 
-asyncio.run(main())
-
-print(time.time() - start)
+print(1)

@@ -1,4 +1,4 @@
-from cycle import A, B
+from c import A, B
 
 b = B()
 a = A(b)

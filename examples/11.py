@@ -2,13 +2,21 @@ import asyncio
 import time
 
 
+event = asyncio.Event()
+
+
+def create() -> None:
+    asyncio.create_task(wait())
+
+
 async def wait() -> None:
     await asyncio.sleep(1)
-    print('done')
+    event.set()
 
 
 async def main() -> None:
-    asyncio.create_task(wait())
+    create()
+    await event.wait()
 
 
 start = time.time()
