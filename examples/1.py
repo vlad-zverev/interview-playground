@@ -4,10 +4,15 @@ import time
 semaphore = asyncio.Semaphore(10)
 
 
+async def do() -> None:
+    async with semaphore:
+        await asyncio.sleep(0.1)
+
+
 async def main() -> None:
-    for _ in range(20):
-        async with semaphore:
-            await asyncio.sleep(0.1)
+    await asyncio.gather(
+        *[do() for _ in range(100)],
+    )
 
 
 start = time.time()
