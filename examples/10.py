@@ -1,17 +1,17 @@
 import asyncio
 import time
 
+semaphore = asyncio.Semaphore(10)
 
-async def run_some_risky(i) -> None:
-    await asyncio.sleep(1)
 
-    if i == 5:
-        raise RuntimeError()
+async def do() -> None:
+    async with semaphore:
+        await asyncio.sleep(0.1)
 
 
 async def main() -> None:
     await asyncio.gather(
-        *[run_some_risky(i) for i in range(10)],
+        *[do() for _ in range(100)],
     )
 
 

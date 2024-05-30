@@ -1,34 +1,33 @@
-def print_number(n: int):
+def с(n: int):
     print(n)
 
-    def decorator(func):
+    def d(f):
         print(100)
 
-        def wrapper(*args, **kwargs):
-            result = func(*args, **kwargs)
+        def w(*args, **kwargs):
+            r = f(*args, **kwargs)
 
-            print(result + 1)
+            print(r + 1)
 
-            return result
+            return r
 
-        return wrapper
+        return w
 
-    return decorator
+    return d
 
 
-@print_number(10)
-def func1():
+@с(10)
+def a():
     return 20
 
 
-@print_number(30)
-@print_number(40)
-def func2():
+@с(30)
+@с(40)
+def b():
     return 50
 
 
-func1()
+a()
 
-f2 = func2()
 
-print(f2)
+print(b())
