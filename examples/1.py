@@ -8,11 +8,16 @@ async def run_some_risky(i) -> None:
     if i == 5:
         raise RuntimeError()
 
+    return i + 1
+
 
 async def main() -> None:
-    await asyncio.gather(
+    results = await asyncio.gather(
         *[run_some_risky(i) for i in range(10)],
     )
+
+    for i in results:
+        print(i)
 
 
 start = time.time()
