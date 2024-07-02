@@ -1,15 +1,23 @@
 """
-https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestick-data
-https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=60
+Calculate volatility for last 1 hour for few symbols:
 
-calcualte volatility for last 1 hour for 5 symbols:
 BTCUSDT
 ETHBTC
 LTCBTC
+ABOBABTC
 DGBBTC
 DOGEBTC
 
-formula:
+Formula:
 volatility = (max_high - min_low) / min_low * 100
 
+Data source:
+https://api.binance.com/api/v3/klines
+Docs for method:
+https://github.com/binance/binance-spot-api-docs/blob/master/rest-api.md#klinecandlestick-data
+
+Use OOP approach
+Imagine that in the future you have to implement few other data sources
+Load data concurrently with async
+Code should be production ready, well optimized, typed, with PEP8 respect
 """

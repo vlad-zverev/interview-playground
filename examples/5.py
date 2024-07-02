@@ -7,7 +7,7 @@ class A:
         return self
 
 
-t = A("1") + A("2")
+t = A(1) + A(2)
 
 t = t + t
 

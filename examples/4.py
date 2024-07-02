@@ -1,7 +1,9 @@
-import random
+def a(d: list[int] = []) -> list[int]:
+    d.append(1)
+    return d
 
-data = [i for i in range(10_000_000)]
 
-n = random.randint(0, 20_000_000)
+for i in range(5):
+    d = a()
 
-print(n in data)
+print(d)
